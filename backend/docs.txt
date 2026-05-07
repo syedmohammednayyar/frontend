@@ -1,0 +1,235 @@
+Signup: http://localhost:4000/api/v1/auth/Signup
+{
+    "name":"Noor",
+    "email":"noor@gmail.com",
+    "password":"Noor1234",
+    "role":"Manager"
+}
+for login: "http://localhost:4000/api/v1/auth/login"
+{
+    "email":"noor@gmail.com",
+    "password":"Noor1234"
+}
+//store test Admin protected
+->post http://localhost:4000/api/v1/store/create
+{
+    "name": "Mumbai Bajar Store",
+    "code": "DT002",
+    "store_type": "main",
+    "is_active": true
+}
+response
+{
+    "success": true,
+    "data": {
+        "name": "Mumbai Bajar Store",
+        "code": "DT002",
+        "store_type": "main",
+        "parent": null,
+        "is_active": true,
+        "_id": "69fa4f619384bf347ed65da5",
+        "created_at": "2026-05-05T20:13:21.219Z",
+        "updated_at": "2026-05-05T20:13:21.219Z",
+        "__v": 0
+    },
+    "message": "Store created successfully"
+}
+
+//post http://localhost:4000/api/v1/store/create
+{
+    "name": "Main Downtown Store",
+    "code": "DT001",
+    "store_type": "main",
+    "is_active": true
+}
+second ----
+{
+    "name": "Bigtown Branch",
+    "code": "UP002",
+    "store_type": "addon",
+    "parent": "69fa4f1f9384bf347ed65da4",
+    "is_active": true
+}
+
+get all store
+http://localhost:4000/api/v1/store/list
+
+------
+customer test
+---------
+post  http://localhost:4000/api/v1/customer/create
+{
+    "name": "Noor",
+    "email": "Noor@example.com",
+    "phone": "+1234567890",
+    "store_ref": "69fa51519384bf347ed65da9"
+}
+GetAll:- http://localhost:4000/api/v1/customer/list
+------
+Product test, Manager protected
+----------
+Post:-  http://localhost:4000/api/v1/product/create
+{
+    "sku": "IPHONE15-PRO-128",
+    "name": "iPhone 15 Pro 128GB",
+    "category": "new_phone",
+    "description": "Latest iPhone with A17 Pro chip",
+    "price": 1099.99,
+    "stock_quantity": 50,
+    "primary_store_ref": "69fa4f1f9384bf347ed65da4",
+    "active": true
+}
+getAll:- http://localhost:4000/api/v1/product/list
+
+------
+ Employee Management @
+ ---------
+ post:- http://localhost:4000/api/v1/employee/create
+ {
+    "name": "Mosarani",
+    "role": "Technician",
+    "store": "Main Downtown Store",
+    "store_ref": "69fa4f1f9384bf347ed65da4",
+    "login_username": "mike.tech",
+    "email": "mike@qualitymobiles.com",
+    "phone": "+1122334455",
+    "join_date": "2024-01-15"
+}
+
+getAllEmployee:  http://localhost:4000/api/v1/employee/list
+
+------
+sales
+-------
+post:    http://localhost:4000/api/v1/sale/create
+{
+    "storeId": "{{storeId}}",
+    "customerId": "{{customerId}}",
+    "discountTotal": 50.00,
+    "exchangeTotal": 0,
+    "note": "Customer requested gift wrapping",
+    "items": [
+        {
+            "productId": "{{productId}}",
+            "quantity": 1
+        }
+    ],
+    "payments": [
+        {
+            "paymentMethod": "cash",
+            "amount": 1049.99,
+            "notes": "Paid in full"
+        }
+    ]
+}
+
+getAllSales: http://localhost:4000/api/v1/sale/list
+
+---------
+Buyback Management
+-----------
+post:  http://localhost:4000/api/v1/buyback/create
+{
+    "imei": "123456789012349",
+    "brand": "Vivo",
+    "model": "v50e",
+    "color": "Phantom white",
+    "customer": "69fa53649384bf347ed65dab",
+    "store_ref": "69fa4f619384bf347ed65da5",
+    "condition": "Good",
+    "market_value": 600.00,
+    "negotiated_price": 450.00,
+    "status": "Pending"
+}
+
+getAllByback:-  http://localhost:4000/api/v1/buyback/list
+
+---------
+Repair Management
+----------
+post:- http://localhost:4000/api/v1/repair/create
+{
+    "customer_name": "Sahil",
+    "customer": "69fa53649384bf347ed65dab",
+    "store_ref": "69fa4f619384bf347ed65da5",
+    "device_model": "Oppo",
+    "problem": " Bettry dimage",
+    "technician_name": "Mike Johnson",
+    "status": "Pending",
+    "parts": [
+        {
+            "name": "Screen Assembly",
+            "qty": 1,
+            "unitCost": 200.99,
+            "status": "Pending"
+        }
+    ],
+    "parts_charge": 1000.99,
+    "labor_cost": 80.00,
+    "warranty": "6 months",
+    "estimated_completion": "2024-06-15"
+}
+
+repair list :-  http://localhost:4000/api/v1/repair/list
+
+--------
+Expense Management
+----------
+post:  http://localhost:4000/api/v1/expense/create
+{
+    "store_ref": "69fa50999384bf347ed65da8",
+    "reason": "Monthly Rent",
+    "out_cash": 3000.00,
+    "out_online": 900.00,
+    "expense_date": "2024-03-01",
+    "notes": "Office rent"
+}
+
+expences list:  http://localhost:4000/api/v1/expense/list
+
+------
+ Payment Management
+ -------
+post:-  http://localhost:4000/api/v1/payment/create
+{
+    "store_ref": "69fa4f1f9384bf347ed65da4",
+    "entry_type": "in",
+    "dealer_name": "Tech Distributors",
+    "cash_amount": 10000.00,
+    "online_amount": 2000.00,
+    "entry_date": "2024-01-15",
+    "notes": "Payment for bulk order"
+}
+
+getAllPaymentlist: http://localhost:4000/api/v1/payment/list
+
+-----
+Sales Report
+---
+    http://localhost:4000/api/v1/report/sales?from=2024-01-01&to=2026-12-31&period=monthly
+    http://localhost:4000/api/v1/report/sales?from=2024-01-01&to=2024-12-31
+
+-----
+dashboad report
+----
+GET http://localhost:4000/api/v1/report/dashboard?fromDate=2024-01-01&toDate=2024-12-31
+
+-----
+product report
+------
+GET http://localhost:4000/api/v1/report/products?from=2024-01-01&to=2026-12-31
+
+------
+Financial Report
+-----
+GET http://localhost:4000/api/v1/report/financial?fromDate=2024-01-01&toDate=2024-12-31
+
+-----
+store report
+------
+http://localhost:4000/api/v1/report/stores?from=2024-01-01&to=2024-12-31
+
+-----
+product to report
+------
+http://localhost:4000/api/v1/report/top-products?from=2024-01-01&to=2024-12-31

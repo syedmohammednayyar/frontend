@@ -1,0 +1,76 @@
+.inventory-page {
+  animation: slideInUp 0.28s ease-out;
+}
+
+.inventory-top {
+  background: linear-gradient(165deg, var(--bg-primary), color-mix(in srgb, var(--bg-primary) 90%, var(--color-primary-50)));
+  border-color: color-mix(in srgb, var(--border-color) 78%, var(--color-primary-100));
+}
+
+.inventory-form {
+  border-color: color-mix(in srgb, var(--border-color) 82%, var(--color-primary-100));
+}
+
+.inventory-state {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.inventory-state-error {
+  border-color: color-mix(in srgb, var(--color-error-500) 28%, var(--border-color));
+  background: color-mix(in srgb, var(--color-error-50) 55%, var(--bg-primary));
+  color: var(--color-error-600);
+}
+
+.inventory-stats .inventory-stat-card {
+  border-color: color-mix(in srgb, var(--border-color) 75%, var(--color-primary-100));
+  background: linear-gradient(165deg, var(--bg-primary), color-mix(in srgb, var(--bg-primary) 90%, var(--color-slate-50)));
+}
+
+.inventory-table-wrap {
+  border-color: color-mix(in srgb, var(--border-color) 78%, var(--color-primary-100));
+}
+
+.inventory-table-modern {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.inventory-table-modern thead {
+  background: color-mix(in srgb, var(--bg-secondary) 88%, var(--color-primary-50));
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+}
+
+.inventory-table-modern tbody tr {
+  border-top: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.inventory-table-modern tbody tr:hover {
+  background: color-mix(in srgb, var(--color-primary-50) 40%, var(--bg-primary));
+}
+
+.inventory-empty {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .inventory-table-wrap {
+    overflow-x: auto;
+  }
+
+  .inventory-table-modern {
+    min-width: 940px;
+  }
+}
